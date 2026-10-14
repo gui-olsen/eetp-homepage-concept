@@ -6,12 +6,7 @@
 
 :root { --ink: #071927; --shadow-soft: 0 4px 2px rgba(0, 0, 0, .1); }
 
-/* ---------- shared: hero photo, accordion ---------- */
-.hero__bg-img {
-  position: absolute; left: -18.47%; top: -29.35%; width: 119.16%; height: 129.37%;
-  max-width: none; object-fit: cover; transform-origin: 70% 60%;
-}
-.js .hero__bg-img { animation: heroZoom 2.8s var(--ease) both; }
+/* ---------- shared: accordion ---------- */
 
 .acc-list { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
 .acc {

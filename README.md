@@ -21,8 +21,8 @@ Then open `http://localhost:5566`.
 | File | Purpose |
 |---|---|
 | `index.html` | Homepage 02: hero with video, products, services, reliability, testimonials, news, FAQ, call-out and footer. |
-| `home-01.html` | Homepage 01 (Figma `Homepage-01`): photo hero, grey product grid, service cards, reliability panels, news, FAQ. |
-| `home-03.html` | Homepage 03 (Figma `Homepage-03`): centred photo hero with a floating kit banner and a services card that overlaps the reliability photo. |
+| `home-01.html` | Homepage 01 (Figma `Homepage-01`): video hero, grey product grid, service cards, reliability panels, news, FAQ. |
+| `home-03.html` | Homepage 03 (Figma `Homepage-03`): centred video hero with a floating kit banner and a services card that overlaps the reliability photo. |
 | `css/variants.css` | Styles for homepages 01 and 03, plus the shared card accordion. |
 | `js/variants.js` | Accordion for homepages 01 and 03. |
 | `product.html` | Individual product page (MWD Ball-Screw Drive): intro, specifications, benefits, interactive exploded view, inquiry form, related products. Reached from the "Linear Drive Assembly" card on the homepage. |
