@@ -1,0 +1,47 @@
+# EETP — Homepage concept
+
+Homepage design concept for **Extensive Energy Technology Partnership (EETP)**, a Calgary-based maker of MWD (Measurement While Drilling) components, field support and consulting.
+
+Built from the approved Figma frame (`Homepage-02`) as a static showcase for EETP's leadership team. It is a concept, not the production site: links and buttons are intentionally inert because the other pages do not exist yet.
+
+**Live preview:** https://gui-olsen.github.io/eetp-homepage-concept/
+
+## Run it locally
+
+Any static file server works, e.g.:
+
+```bash
+npx http-server -p 5566 -c-1
+```
+
+Then open `http://localhost:5566`.
+
+## Structure
+
+| File | Purpose |
+|---|---|
+| `index.html` | The full page: hero, products, services, reliability, testimonials, news, FAQ, call-out and footer. |
+| `css/tokens.css` | EETP brand variables, forked from [`gui-olsen/guiolsen-design-system`](https://github.com/gui-olsen/guiolsen-design-system). Same names and values as the variables in the Figma file. |
+| `css/components.css` | Base styles, buttons, section labels, text links, headings. Built on the tokens. |
+| `css/styles.css` | Section layouts, hover states, entrance animations and the responsive breakpoints. |
+| `js/main.js` | Hero title word reveal, scroll-reveal, count-up metric, FAQ accordion, inert links. |
+| `images/` | Assets exported from Figma. The four large photos are compressed to WebP. |
+
+## Brand tokens (`css/tokens.css`)
+
+- `--color-accent` `#0075C1` (CTAs, links, labels), `--color-primary` `#000000` (headings, dark surfaces)
+- `--color-primary-tint` `#F8F9F9`, `--color-secondary-tint` `#E9E9E9`, `--color-accent-tint` `#E6F1F9`
+- `--font-secondary` Montserrat (headings), `--font-primary` PT Sans (body), `--font-mono` Roboto Mono (technical labels)
+
+## Interactions
+
+- **Entrance:** the hero image settles in, the nav drops in, the title reveals word by word, then the actions, capability note and ticker follow. Every section after the hero reveals on scroll with a short stagger, and the "20+" metric counts up.
+- **Hover:** buttons lift and darken, nav links draw an underline, product and article cards lift with an image zoom, service rows highlight, capability panels glow, and text-link arrows nudge.
+- **FAQ:** a smooth accordion (first item open, keyboard accessible).
+- **Accessibility:** respects `prefers-reduced-motion` (everything shows immediately, no movement), visible focus states, semantic landmarks and a skip link.
+
+## Notes on the content
+
+Copy and imagery come straight from the Figma frame, including its placeholders: all product cards share one image, the news cards and FAQ questions repeat one title, the FAQ answer and the testimonials are sample text, and the hero and reliability photos are watermarked stock previews. Replace these before anything goes live.
+
+The page is marked `noindex` so search engines skip it while it is a concept.

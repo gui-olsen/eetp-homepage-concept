@@ -1,0 +1,67 @@
+/*
+  EETP design tokens (CSS custom properties)
+  Source: gui-olsen/guiolsen-design-system pattern, edited for EETP.
+  Per-project layer: --color-* vars, --white/--black and the --font-* vars.
+  The values below match the variables in the EETP Figma file.
+*/
+
+:root {
+  /* ---- color ---- */
+  --color-primary: #000000;
+  --color-primary-hover: #1A1A1A;
+  --color-primary-tint: #F8F9F9;
+  --color-secondary: #555555;
+  --color-secondary-hover: #6E6E6E;
+  --color-secondary-tint: #E9E9E9;
+  --color-accent: #0075C1;
+  --color-accent-hover: #005E9A;
+  --color-accent-tint: #E6F1F9;
+  --white: #FFFFFF;
+  --black: #000000;
+  --color-bg: #FFFFFF;
+
+  /* design-specific values used in the homepage frame */
+  --color-card-border: #D5E1E7;
+  --color-text-on-dark: #B8C8D4;
+  --color-line-on-dark: rgba(0, 117, 193, 0.19);
+
+  /* ---- fonts ---- */
+  --font-primary: 'PT Sans', sans-serif;
+  --font-secondary: 'Montserrat', sans-serif;
+  --font-mono: 'Roboto Mono', ui-monospace, monospace;
+
+  /* ---- fixed system scale ---- */
+  --font-display: 64px;
+  --font-h1: 40px;
+  --font-h2: 28px;
+  --font-h3: 18px;
+  --font-body-lg: 18px;
+  --font-body: 16px;
+  --font-body-sm: 14px;
+  --font-eyebrow: 12px;
+  --font-caption: 12px;
+  --font-button: 14px;
+
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --space-96: 96px;
+  --space-128: 128px;
+
+  --radius-none: 0px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-rounded: 999px;
+
+  /* ---- layout + motion ---- */
+  --page-pad: 72px;
+  --page-max: 1440px;
+  --shadow-card: 0 4px 4px rgba(0, 0, 0, 0.1);
+  --ease: cubic-bezier(0.22, 0.7, 0.2, 1);
+}
