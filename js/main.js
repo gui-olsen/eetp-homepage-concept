@@ -12,6 +12,14 @@
     }).join(' ');
   });
 
+  /* Sticky header: solid blue background and white button once the page scrolls */
+  var bar = document.querySelector('.nav, .topbar');
+  if (bar) {
+    var stuck = function () { bar.classList.toggle('is-stuck', window.scrollY > 24); };
+    stuck();
+    window.addEventListener('scroll', stuck, { passive: true });
+  }
+
   /* Showcase build: pages do not exist yet, so inert links and buttons do nothing */
   document.addEventListener('click', function (e) {
     var a = e.target.closest('a[href="#"]');

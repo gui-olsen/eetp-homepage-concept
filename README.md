@@ -20,7 +20,11 @@ Then open `http://localhost:5566`.
 
 | File | Purpose |
 |---|---|
-| `index.html` | The full page: hero, products, services, reliability, testimonials, news, FAQ, call-out and footer. |
+| `index.html` | Homepage 02: hero with video, products, services, reliability, testimonials, news, FAQ, call-out and footer. |
+| `home-01.html` | Homepage 01 (Figma `Homepage-01`): photo hero, grey product grid, service cards, reliability panels, news, FAQ. |
+| `home-03.html` | Homepage 03 (Figma `Homepage-03`): centred photo hero with a floating kit banner and a services card that overlaps the reliability photo. |
+| `css/variants.css` | Styles for homepages 01 and 03, plus the shared card accordion. |
+| `js/variants.js` | Accordion for homepages 01 and 03. |
 | `product.html` | Individual product page (MWD Ball-Screw Drive): intro, specifications, benefits, interactive exploded view, inquiry form, related products. Reached from the "Linear Drive Assembly" card on the homepage. |
 | `css/product.css` | Styles for the product page and the exploded-view lightbox. |
 | `js/exploded-data.js` | Exploded view data: 24 parts, hotspot polygons (drawing pixel space) and sample copy. |
@@ -40,6 +44,7 @@ Then open `http://localhost:5566`.
 
 ## Interactions
 
+- **Sticky header (all pages):** the header stays on screen while scrolling. After a few pixels it turns solid blue, the call button turns white, and the bar gets slightly shorter.
 - **Hero video:** muted, looping and inline-playing behind the dark gradient.
 - **Entrance:** the hero video settles in, the nav drops in, the title reveals word by word, then the actions, capability note and ticker follow. Every section after the hero reveals on scroll with a short stagger, and the "20+" metric counts up.
 - **Hover:** buttons lift and darken, nav links draw an underline, product and article cards lift with an image zoom, service rows highlight, capability panels glow, and text-link arrows nudge.

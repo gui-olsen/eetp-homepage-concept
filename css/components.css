@@ -103,3 +103,6 @@ button { font: inherit; cursor: pointer; }
 .lead { font-size: 17px; line-height: 1.6; color: var(--color-secondary); }
 .lead--light { color: var(--color-primary-tint); }
 .mono-meta { font-family: var(--font-mono); font-size: 11px; line-height: normal; color: var(--color-secondary); }
+
+/* ---------- section label variants ---------- */
+.eyebrow--pt { font-family: var(--font-primary); font-size: var(--font-eyebrow); letter-spacing: .96px; }
