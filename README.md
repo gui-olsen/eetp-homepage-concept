@@ -21,6 +21,10 @@ Then open `http://localhost:5566`.
 | File | Purpose |
 |---|---|
 | `index.html` | The full page: hero, products, services, reliability, testimonials, news, FAQ, call-out and footer. |
+| `product.html` | Individual product page (MWD Ball-Screw Drive): intro, specifications, benefits, interactive exploded view, inquiry form, related products. Reached from the "Linear Drive Assembly" card on the homepage. |
+| `css/product.css` | Styles for the product page and the exploded-view lightbox. |
+| `js/exploded-data.js` | Exploded view data: 24 parts, hotspot polygons (drawing pixel space) and sample copy. |
+| `js/exploded.js` | Exploded view behaviour: hover highlight and tooltip, click to open the lightbox, keyboard support, Esc to close. |
 | `css/tokens.css` | EETP brand variables, forked from [`gui-olsen/guiolsen-design-system`](https://github.com/gui-olsen/guiolsen-design-system). Same names and values as the variables in the Figma file. |
 | `css/components.css` | Base styles, buttons, section labels, text links, headings. Built on the tokens. |
 | `css/styles.css` | Section layouts, hover states, entrance animations and the responsive breakpoints. |
@@ -40,10 +44,13 @@ Then open `http://localhost:5566`.
 - **Entrance:** the hero video settles in, the nav drops in, the title reveals word by word, then the actions, capability note and ticker follow. Every section after the hero reveals on scroll with a short stagger, and the "20+" metric counts up.
 - **Hover:** buttons lift and darken, nav links draw an underline, product and article cards lift with an image zoom, service rows highlight, capability panels glow, and text-link arrows nudge.
 - **FAQ:** a smooth accordion (first item open, keyboard accessible).
+- **Exploded view (product page):** hotspots are hidden until hover. Hovering a part highlights it and shows its name; clicking opens a lightbox with a zoomed detail, description, part number, quantity, material, and "View product" (only for parts with their own page) and "Download datasheet" buttons. Both buttons are inert in this concept.
 - **Accessibility:** respects `prefers-reduced-motion` (everything shows immediately, no movement), visible focus states, semantic landmarks and a skip link.
 
 ## Notes on the content
 
 Copy and imagery come straight from the Figma frame, including its placeholders: all product cards share one image, the news cards and FAQ questions repeat one title, the FAQ answer and the testimonials are sample text and the reliability photo is a watermarked stock preview. Replace these before anything goes live.
 
-The page is marked `noindex` so search engines skip it while it is a concept.
+The exploded view uses the TVD001 rev G drawing and its parts list as stand-in content while the real MWD Ball-Screw Drive drawing is not available. Part descriptions are sample copy. The product photo, related products and specification text come from the Figma frame.
+
+Both pages are marked `noindex` so search engines skip it while it is a concept.
