@@ -157,12 +157,12 @@
 .n01__row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
 .art01 {
   --hover-transition: transform .45s var(--ease), box-shadow .45s var(--ease);
-  display: flex; flex-direction: column; min-height: 588px; overflow: hidden;
+  display: flex; flex-direction: column; min-height: 540px; overflow: hidden;
   background: var(--white); border: 1px solid var(--color-accent); border-radius: var(--radius-lg); box-shadow: var(--shadow-card);
 }
 .art01:hover { transform: translateY(-8px); box-shadow: 0 18px 36px rgba(0, 0, 0, .18); }
-.art01__img { flex: none; height: 290px; overflow: hidden; }
-.art01__img img { width: 100%; height: 100%; object-fit: cover; object-position: 100% 50%; transition: transform .9s var(--ease); }
+.art01__img { flex: none; height: 242px; overflow: hidden; }
+.art01__img img { width: 100%; height: 100%; object-fit: cover; object-position: 20% 50%; transition: transform .9s var(--ease); }
 .art01:hover .art01__img img { transform: scale(1.06); }
 .art01__body { flex: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px 24px 28px; }
 .art01__title { font-family: var(--font-secondary); font-weight: 600; font-size: var(--font-h3); line-height: 1.2; letter-spacing: -.18px; color: var(--color-primary); }
@@ -259,7 +259,7 @@
 }
 .art03:hover { transform: translateY(-6px); }
 .art03__img { flex: none; height: 212px; overflow: hidden; border-radius: var(--radius-lg); }
-.art03__img img { width: 100%; height: 100%; object-fit: cover; transition: transform .9s var(--ease); }
+.art03__img img { width: 100%; height: 100%; object-fit: cover; object-position: 25% 50%; transition: transform .9s var(--ease); }
 .art03:hover .art03__img img { transform: scale(1.06); }
 .art03__body { flex: 1; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-16); padding: 28px 0; }
 .art03__meta { align-self: stretch; display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; line-height: normal; color: var(--color-secondary); }

@@ -35,7 +35,7 @@ Then open `http://localhost:5566`.
 | `css/components.css` | Base styles, buttons, section labels, text links, headings. Built on the tokens. |
 | `css/styles.css` | Section layouts, hover states, entrance animations and the responsive breakpoints. |
 | `js/main.js` | Hero title word reveal, scroll-reveal, count-up metric, FAQ accordion, inert links. |
-| `images/` | Assets exported from Figma. The four large photos are compressed to WebP. |
+| `images/` | Assets exported from Figma. The large photos are compressed to WebP. `images/products/` and `images/articles/` hold product photos and article featured images taken from eetp.ca. |
 | `video/hero.mp4` | Looping hero background video (8 s, 1280×720, about 4 MB). |
 
 ## Brand tokens (`css/tokens.css`)
@@ -56,7 +56,7 @@ Then open `http://localhost:5566`.
 
 ## Notes on the content
 
-Copy and imagery come straight from the Figma frame, including its placeholders: all product cards share one image, the news cards and FAQ questions repeat one title, the FAQ answer and the testimonials are sample text and the reliability photo is a watermarked stock preview. Replace these before anything goes live.
+Copy and imagery come from the Figma frames. Product cards and article cards use real product photos, names and article titles from eetp.ca (product descriptions are short paraphrases of the site copy, and the P-xxx codes are placeholders). The FAQ questions and answers and the testimonials are still sample text, and the reliability photo is a watermarked stock preview. Replace these before anything goes live.
 
 The exploded view uses the TVD001 rev G drawing and its parts list as stand-in content while the real MWD Ball-Screw Drive drawing is not available. Part descriptions are sample copy. The product photo, related products and specification text come from the Figma frame.
 
