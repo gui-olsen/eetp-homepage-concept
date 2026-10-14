@@ -26,6 +26,7 @@ Then open `http://localhost:5566`.
 | `css/styles.css` | Section layouts, hover states, entrance animations and the responsive breakpoints. |
 | `js/main.js` | Hero title word reveal, scroll-reveal, count-up metric, FAQ accordion, inert links. |
 | `images/` | Assets exported from Figma. The four large photos are compressed to WebP. |
+| `video/hero.mp4` | Looping hero background video (8 s, 1280×720, about 4 MB). The hero photo is its poster and the fallback. |
 
 ## Brand tokens (`css/tokens.css`)
 
@@ -35,13 +36,14 @@ Then open `http://localhost:5566`.
 
 ## Interactions
 
-- **Entrance:** the hero image settles in, the nav drops in, the title reveals word by word, then the actions, capability note and ticker follow. Every section after the hero reveals on scroll with a short stagger, and the "20+" metric counts up.
+- **Hero video:** muted, looping and inline-playing behind the dark gradient. Visitors who prefer reduced motion get the still photo instead.
+- **Entrance:** the hero video settles in, the nav drops in, the title reveals word by word, then the actions, capability note and ticker follow. Every section after the hero reveals on scroll with a short stagger, and the "20+" metric counts up.
 - **Hover:** buttons lift and darken, nav links draw an underline, product and article cards lift with an image zoom, service rows highlight, capability panels glow, and text-link arrows nudge.
 - **FAQ:** a smooth accordion (first item open, keyboard accessible).
 - **Accessibility:** respects `prefers-reduced-motion` (everything shows immediately, no movement), visible focus states, semantic landmarks and a skip link.
 
 ## Notes on the content
 
-Copy and imagery come straight from the Figma frame, including its placeholders: all product cards share one image, the news cards and FAQ questions repeat one title, the FAQ answer and the testimonials are sample text, and the hero and reliability photos are watermarked stock previews. Replace these before anything goes live.
+Copy and imagery come straight from the Figma frame, including its placeholders: all product cards share one image, the news cards and FAQ questions repeat one title, the FAQ answer and the testimonials are sample text, and the reliability photo and the hero poster (shown while the video loads) are watermarked stock previews. Replace these before anything goes live.
 
 The page is marked `noindex` so search engines skip it while it is a concept.

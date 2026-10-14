@@ -18,6 +18,18 @@
     if (a) e.preventDefault();
   });
 
+  /* Hero background video: play unless the visitor prefers reduced motion (the photo shows instead) */
+  var heroVideo = document.querySelector('.hero__video');
+  if (heroVideo) {
+    if (reduce) {
+      heroVideo.pause();
+      heroVideo.removeAttribute('autoplay');
+    } else {
+      var playing = heroVideo.play();
+      if (playing && playing.catch) playing.catch(function () {});
+    }
+  }
+
   /* Scroll reveal */
   var items = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
   items.forEach(function (el) {
