@@ -26,7 +26,9 @@ Then open `http://localhost:5566`.
 | `css/variants.css` | Styles for homepages 01 and 03, plus the shared card accordion. |
 | `js/variants.js` | Accordion for homepages 01 and 03. |
 | `product.html` | Individual product page (MWD Ball-Screw Drive): intro, specifications, benefits, interactive exploded view, inquiry form, related products. Reached from the "Linear Drive Assembly" card on the homepage. |
-| `css/product.css` | Styles for the product page and the exploded-view lightbox. |
+| `product-03.html` | Product page variant 03 (Figma `Individual-product-03`): dark hero, overview, specification table, benefits and inquiry stacked, related products. No exploded view. |
+| `product-03-1.html` | Product page variant 03.1 (Figma `Individual-product-03.1`): overview, two-column specifications with benefits and inquiry, interactive exploded view, related products. |
+| `css/product.css` | Styles for the product pages and the exploded-view lightbox. |
 | `js/exploded-data.js` | Exploded view data: 24 parts, hotspot polygons (drawing pixel space) and sample copy. |
 | `js/exploded.js` | Exploded view behaviour: hover highlight and tooltip, click to open the lightbox, keyboard support, Esc to close. |
 | `css/tokens.css` | EETP brand variables, forked from [`gui-olsen/guiolsen-design-system`](https://github.com/gui-olsen/guiolsen-design-system). Same names and values as the variables in the Figma file. |
