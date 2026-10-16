@@ -34,7 +34,7 @@ function eetp_ev_register_fields() {
 				'label'        => 'Exploded view image (PNG)',
 				'name'         => 'ev_image',
 				'type'         => 'image',
-				'instructions' => 'The exploded view drawing without the parts table.',
+				'instructions' => 'The exploded view drawing without the parts table. Use 2000 to 2500 px wide: WordPress shrinks images wider than 2560 px and the areas would no longer match.',
 				'return_format' => 'array',
 				'preview_size' => 'medium',
 				'library'      => 'all',
@@ -107,6 +107,30 @@ function eetp_ev_extra($data) {
 	return $extra;
 }
 
+/**
+ * Links, datasheets and photos written as a path ("/product/spring-sleeve/") are turned into
+ * full addresses with the current site address. The same data then works on staging and on
+ * production, and on a site installed in a subfolder.
+ */
+function eetp_ev_resolve_urls($data) {
+	$out = array();
+	foreach (preg_split('/\r\n|\r|\n/', (string) $data) as $line) {
+		$trim = trim($line);
+		if ($trim === '' || $trim[0] === '#') {
+			$out[] = $line;
+			continue;
+		}
+		$f = array_map('trim', explode('|', $trim));
+		foreach (array(5, 6, 8) as $i) {
+			if (isset($f[$i]) && $f[$i] !== '' && $f[$i][0] === '/' && substr($f[$i], 0, 2) !== '//') {
+				$f[$i] = home_url($f[$i]);
+			}
+		}
+		$out[] = implode(' | ', $f);
+	}
+	return implode("\n", $out);
+}
+
 /* [eetp_exploded] */
 add_shortcode('eetp_exploded', 'eetp_ev_shortcode');
 function eetp_ev_shortcode($atts) {
@@ -125,7 +149,8 @@ function eetp_ev_shortcode($atts) {
 	if (empty($image['url']) || trim((string) $data) === '') {
 		return '';
 	}
-	$pdf = get_field('ev_pdf', $post_id);
+	$data = eetp_ev_resolve_urls($data);
+	$pdf  = get_field('ev_pdf', $post_id);
 
 	wp_enqueue_style('eetp-exploded', EETP_EV_URL . 'assets/exploded.css', array(), EETP_EV_VERSION);
 	wp_enqueue_script('eetp-exploded', EETP_EV_URL . 'assets/exploded.js', array(), EETP_EV_VERSION, true);

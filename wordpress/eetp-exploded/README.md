@@ -10,13 +10,13 @@ Needs ACF (the free version is enough) and WooCommerce products.
 
 ## Per product
 Open the product and fill the "Exploded view" box:
-- **Exploded view image**: the drawing without the parts table.
+- **Exploded view image**: the drawing without the parts table. Use 2000 to 2500 px wide: WordPress shrinks images wider than 2560 px, and the areas would no longer match.
 - **Exploded view PDF** (optional): shows a download link under the image.
 - **Exploded view data**: one line per part.
 
     number | name | part number | qty | description | link | datasheet | areas | photo
 
-- `link`: the product page of the part. Gives the "View product" button, and the plugin takes the part photo (the product's featured image) and short description from that page.
+- `link`: the product page of the part. A path such as `/product/spring-sleeve/` is best, because it works on staging and on production (the plugin adds the site address). Gives the "View product" button, and the plugin takes the part photo (the product's featured image) and short description from that page.
 - `datasheet`: file to download. Gives the "Download datasheet" button. Leave empty if there is none.
 - `areas`: `x,y x,y x,y ...` in pixels of the uploaded image. Use `;` for more than one area on the same part.
 - `photo`: optional photo address for a part that has no product page. It wins over the product photo.
