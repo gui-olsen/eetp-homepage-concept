@@ -1,18 +1,18 @@
-# EETP exploded view (WordPress)
+# EETP Exploded View (WordPress plugin)
 
-Shortcode `[eetp_exploded]`. One piece of code for every product. Each product keeps its own image, parts and hover areas in three ACF fields.
+A small plugin that adds the `[eetp_exploded]` shortcode and an "Exploded view" box on every product. One piece of code for all products: each product keeps its own image, parts and hover areas in its own fields.
+
+Needs ACF (the free version is enough) and WooCommerce products.
 
 ## Install (staging first)
-1. Copy this folder to `wp-content/themes/<child-theme>/eetp-exploded/`.
-2. In the child theme `functions.php` add:
-   `require_once get_stylesheet_directory() . '/eetp-exploded/exploded.php';`
-3. ACF > Tools > Import Field Groups > choose `acf-field-group.json`.
-4. In the Elementor single-product template add a Shortcode widget with `[eetp_exploded]` where the exploded view should appear.
+1. WordPress admin > Plugins > Add New > Upload Plugin > choose `eetp-exploded.zip` > Install > Activate.
+2. Open the Elementor single-product template and add a Shortcode widget with `[eetp_exploded]` where the exploded view should appear (at the top for products with an exploded view).
 
 ## Per product
-Open the product and fill the "Exploded view" box: image, PDF (optional) and the data text.
-
-Data, one line per part, fields separated by `|`:
+Open the product and fill the "Exploded view" box:
+- **Exploded view image**: the drawing without the parts table.
+- **Exploded view PDF** (optional): shows a download link under the image.
+- **Exploded view data**: one line per part.
 
     number | name | part number | qty | description | link | areas
 
@@ -20,6 +20,8 @@ Data, one line per part, fields separated by `|`:
 - `link`: product page of the part (starts with `/` or `https://`). Leave empty if the part has no page.
 - Lines that start with `#` are ignored. Parts without areas are not clickable.
 
-See `../../exploded-test.html` for a working example (Ball Screw Assembly 10mm).
+If the product has no image or no data, nothing is shown, so the same template can serve every product.
 
-Not yet tested inside WordPress: the JS, CSS and markup are tested in the static page; the PHP and the ACF import still need a first run on staging.
+Working example: `../../exploded-test.html` (Ball Screw Assembly 10mm).
+
+Status: the JS, CSS and markup are tested in the static test page. The PHP and the ACF box still need a first run on the staging site.
