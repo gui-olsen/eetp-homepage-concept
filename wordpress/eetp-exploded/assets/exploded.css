@@ -1,13 +1,13 @@
 /* EETP exploded view: styles for the [eetp_exploded] shortcode.
    Colours fall back to the theme tokens when they exist. */
-.eetp-ev {
+.eetp-ev,
+.eetp-lb {
   --ev-accent: var(--color-accent, #0075C1);
   --ev-accent-hover: var(--color-accent-hover, #005E9A);
   --ev-ink: #071927;
   --ev-line: var(--color-secondary-tint, #E9E9E9);
-  position: relative;
-  width: 100%;
 }
+.eetp-ev { position: relative; width: 100%; }
 .eetp-ev__canvas { position: relative; background: #fff; }
 .eetp-ev__img { display: block; width: 100%; height: auto; }
 .eetp-ev__svg { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -50,8 +50,7 @@ body.eetp-lock { overflow: hidden; }
   box-shadow: 0 24px 64px rgba(0, 0, 0, .45); animation: eetpPop .4s both;
 }
 .eetp-lb__media { padding: 24px; background: #F8F9F9; display: flex; align-items: flex-start; }
-.eetp-lb__crop { width: 100%; aspect-ratio: 4 / 3; overflow: hidden; background: #fff; border: 1px solid var(--ev-line); border-radius: 4px; }
-.eetp-lb__crop svg { display: block; width: 100%; height: 100%; }
+.eetp-lb__noimg { display: grid; place-items: center; width: 100%; aspect-ratio: 4 / 3; background: #fff; border: 1px dashed #c9d8e1; border-radius: 4px; font-size: 14px; color: #8fa6b4; text-align: center; }
 .eetp-lb__body { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 40px 32px 32px; }
 .eetp-lb__eyebrow { margin: 0; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ev-accent); }
 .eetp-lb__title { margin: 0; font-size: 24px; line-height: 1.15; color: var(--ev-ink); }
@@ -64,6 +63,9 @@ body.eetp-lock { overflow: hidden; }
   background: var(--ev-accent); color: #fff; font-size: 14px; font-weight: 700; text-decoration: none; transition: background-color .3s;
 }
 .eetp-btn:hover { background: var(--ev-accent-hover); color: #fff; }
+.eetp-btn--outline { background: #fff; color: var(--ev-accent); border: 1px solid var(--ev-accent); padding: 12px 21px; }
+.eetp-btn--outline:hover { background: var(--ev-accent); color: #fff; }
+.eetp-lb__photo { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: contain; background: #fff; border: 1px solid var(--ev-line); border-radius: 4px; }
 .eetp-lb__x {
   position: absolute; top: 12px; right: 12px; z-index: 2; width: 40px; height: 40px; border-radius: 50%;
   border: 1px solid var(--ev-line); background: #fff; color: #000; font-size: 22px; line-height: 1; cursor: pointer;

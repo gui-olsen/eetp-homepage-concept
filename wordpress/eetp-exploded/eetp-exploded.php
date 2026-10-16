@@ -53,7 +53,7 @@ function eetp_ev_register_fields() {
 				'label'        => 'Exploded view data',
 				'name'         => 'ev_data',
 				'type'         => 'textarea',
-				'instructions' => 'One line per part: number | name | part number | qty | description | link | areas',
+				'instructions' => 'One line per part: number | name | part number | qty | description | link | datasheet | areas',
 				'rows'         => 20,
 				'new_lines'    => '',
 			),
@@ -72,6 +72,39 @@ function eetp_ev_register_fields() {
 		'label_placement'      => 'top',
 		'instruction_placement' => 'label',
 	));
+}
+
+/**
+ * Photo and short description of each part come from the product page behind its link.
+ * Returns array( part number => array( 'img' => url, 'desc' => text ) ).
+ */
+function eetp_ev_extra($data) {
+	$extra = array();
+	foreach (preg_split('/\r\n|\r|\n/', (string) $data) as $line) {
+		$line = trim($line);
+		if ($line === '' || $line[0] === '#') {
+			continue;
+		}
+		$f    = array_map('trim', explode('|', $line));
+		$n    = isset($f[0]) ? $f[0] : '';
+		$link = isset($f[5]) ? $f[5] : '';
+		if ($n === '' || $link === '' || isset($extra[$n])) {
+			continue;
+		}
+		if ($link[0] === '/') {
+			$link = home_url($link);
+		}
+		$pid = url_to_postid($link);
+		if (!$pid) {
+			continue;
+		}
+		$img  = get_the_post_thumbnail_url($pid, 'medium_large');
+		$desc = has_excerpt($pid) ? wp_strip_all_tags(get_the_excerpt($pid)) : '';
+		if ($img || $desc) {
+			$extra[$n] = array('img' => $img ? $img : '', 'desc' => $desc);
+		}
+	}
+	return $extra;
 }
 
 /* [eetp_exploded] */
@@ -101,7 +134,7 @@ function eetp_ev_shortcode($atts) {
 
 	ob_start();
 	?>
-	<div class="eetp-ev">
+	<div class="eetp-ev" data-extra="<?php echo esc_attr(wp_json_encode(eetp_ev_extra($data))); ?>">
 		<div class="eetp-ev__canvas">
 			<?php
 			if (!empty($image['ID'])) {

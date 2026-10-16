@@ -14,26 +14,27 @@
 <body>
   <p class="test-note">Test page for the [eetp_exploded] component. Same markup the WordPress shortcode prints.</p>
   <div class="test-wrap">
-    <div class="eetp-ev">
+    <div class="eetp-ev" data-extra='{"3":{"img":"images/product.png","desc":"Support bearing for the 10 mm ball screw. Photo and description come from the part product page."}}'>
       <div class="eetp-ev__canvas">
         <img class="eetp-ev__img" src="images/exploded-test/ball-screw-assembly-10mm.webp" width="1840" height="655" alt="Ball Screw Assembly 10mm exploded view">
       </div>
-      <textarea class="eetp-ev__data" hidden># number | name | part number | qty | description | link | areas (x,y x,y ...; next area)
-2 | Screw 4-40 X 1/8" Socket Set | SCW016 | 1 |  |  | 47,338 60,338 60,356 47,356
-3 | Ball Screw Support Bearing 10mm Ball Screw | NDR002-B | 1 |  |  | 83,263 111,263 111,276 124,276 124,339 111,339 111,352 83,352
-4 | Bearing Shielded | BER004 | 2 |  | product.html | 146,282 163,282 163,332 146,332; 171,282 189,282 189,332 171,332
-5 | .005 shim top bearing ballscrew | SHM002 | 1 |  |  | 198,277 206,277 206,334 198,334
-6 | Snap Ring Internal SST | SNP007 | 1 |  |  | 210,277 218,277 218,336 210,336
-7 | Internal spiral Snap Ring SST | SNP012 | 1 |  |  | 224,273 232,273 232,340 224,340
-8 | Ball Screw Threaded Nut | NDR025-B | 1 |  |  | 248,276 268,276 268,341 248,341
-9 | Ball Screw 10mm Ball Screw | NDR015 | 1 |  |  | 441,277 513,277 513,341 441,341
-10 | Keyway Alloy Steel | SCW014 | 1 |  |  | 449,355 483,355 483,367 449,367
-11 | Ball Screw Sleeve 10mm Ball Screw | NDR001-G | 1 |  |  | 526,273 667,273 705,282 705,337 667,341 526,343
-12 | Screw 6-32 UNC X 0.09375 Socket Set SST | SCW015 | 2 |  |  | 676,296 696,296 696,316 676,316
-13 | Ball Screw Assembly 10mm | NDR006-I | 1 |  |  | 715,289 1298,289 1298,323 715,323
-14 | Screw 6-32 UNC X 0.125" Socket Set SST | SCW002 | 2 |  |  | 1278,260 1297,260 1297,278 1278,278; 1278,340 1297,340 1297,358 1278,358
-15 | Servo-poppet Shaft 10mm Ball Screw | NDR004-C | 1 |  |  | 1313,297 1632,297 1632,317 1313,317
-16 | Ball Screw Retaining Nut SST | NDR005-D | 1 |  |  | 44,293 62,293 62,322 44,322
+      <textarea class="eetp-ev__data" hidden># number | name | part number | qty | description | link | datasheet | areas
+# link = product page of the part (starts with / or https://). datasheet = file to download. Leave empty if none.
+2 | Screw 4-40 X 1/8" Socket Set | SCW016 | 1 |  |  |  | 47,338 60,338 60,356 47,356
+3 | Ball Screw Support Bearing 10mm Ball Screw | NDR002-B | 1 |  | product.html | images/exploded-test/ball-screw-assembly-10mm.png | 83,263 111,263 111,276 124,276 124,339 111,339 111,352 83,352
+4 | Bearing Shielded | BER004 | 2 |  | product.html |  | 146,282 163,282 163,332 146,332; 171,282 189,282 189,332 171,332
+5 | .005 shim top bearing ballscrew | SHM002 | 1 |  |  |  | 198,277 206,277 206,334 198,334
+6 | Snap Ring Internal SST | SNP007 | 1 |  |  |  | 210,277 218,277 218,336 210,336
+7 | Internal spiral Snap Ring SST | SNP012 | 1 |  |  |  | 224,273 232,273 232,340 224,340
+8 | Ball Screw Threaded Nut | NDR025-B | 1 |  |  |  | 248,276 268,276 268,341 248,341
+9 | Ball Screw 10mm Ball Screw | NDR015 | 1 |  |  |  | 441,277 513,277 513,341 441,341
+10 | Keyway Alloy Steel | SCW014 | 1 |  |  |  | 449,355 483,355 483,367 449,367
+11 | Ball Screw Sleeve 10mm Ball Screw | NDR001-G | 1 |  |  |  | 526,273 667,273 705,282 705,337 667,341 526,343
+12 | Screw 6-32 UNC X 0.09375 Socket Set SST | SCW015 | 2 |  |  |  | 676,296 696,296 696,316 676,316
+13 | Ball Screw Assembly 10mm | NDR006-I | 1 |  |  |  | 715,289 1298,289 1298,323 715,323
+14 | Screw 6-32 UNC X 0.125" Socket Set SST | SCW002 | 2 |  |  |  | 1278,260 1297,260 1297,278 1278,278; 1278,340 1297,340 1297,358 1278,358
+15 | Servo-poppet Shaft 10mm Ball Screw | NDR004-C | 1 |  |  |  | 1313,297 1632,297 1632,317 1313,317
+16 | Ball Screw Retaining Nut SST | NDR005-D | 1 |  |  |  | 44,293 62,293 62,322 44,322
 </textarea>
     </div>
   </div>

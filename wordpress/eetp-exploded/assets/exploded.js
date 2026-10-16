@@ -3,9 +3,14 @@
    invisible hover areas over the image. Hover = highlight + name, click/tap/Enter = details box.
 
    Line format (fields separated by |):
-   number | name | part number | qty | description | link | areas
-   areas: x,y x,y x,y ...   (use ; between several areas for the same part)
-   Coordinates are in pixels of the original image. */
+   number | name | part number | qty | description | link | datasheet | areas
+   link:      product page of the part (opens with the View product button)
+   datasheet: file to download (opens with the Download datasheet button)
+   areas:     x,y x,y x,y ...   (use ; between several areas for the same part)
+   Coordinates are in pixels of the original image.
+
+   Optional photo and description per part: the shortcode looks up the product behind the link
+   and passes its featured image and short description in data-extra. */
 (function () {
   'use strict';
 
@@ -24,7 +29,7 @@
     for (var k in attrs) e.setAttribute(k, attrs[k]);
     return e;
   }
-  function safeLink(url) { return /^(https?:\/\/|\/)/.test(url) ? url : ''; }
+  function safeLink(url) { return /^\s*(javascript|data|vbscript):/i.test(url) ? '' : url; }
 
   function parse(text) {
     var order = [], byN = {};
@@ -35,10 +40,10 @@
       if (!f[0] || !f[1]) return;
       var p = byN[f[0]];
       if (!p) {
-        p = byN[f[0]] = { n: f[0], name: f[1], pn: f[2] || '', qty: f[3] || '', desc: f[4] || '', link: safeLink(f[5] || ''), areas: [] };
+        p = byN[f[0]] = { n: f[0], name: f[1], pn: f[2] || '', qty: f[3] || '', desc: f[4] || '', link: safeLink(f[5] || ''), sheet: safeLink(f[6] || ''), img: '', areas: [] };
         order.push(p);
       }
-      (f[6] || '').split(';').forEach(function (a) {
+      (f[7] || '').split(';').forEach(function (a) {
         var pts = a.trim().split(/\s+/).map(function (pt) {
           var xy = pt.split(',');
           return [parseFloat(xy[0]), parseFloat(xy[1])];
@@ -54,10 +59,6 @@
     var x = 0, y = 0;
     poly.forEach(function (q) { x += q[0]; y += q[1]; });
     return [x / poly.length, y / poly.length];
-  }
-  function bbox(poly) {
-    var xs = poly.map(function (q) { return q[0]; }), ys = poly.map(function (q) { return q[1]; });
-    return { x0: Math.min.apply(null, xs), x1: Math.max.apply(null, xs), y0: Math.min.apply(null, ys), y1: Math.max.apply(null, ys) };
   }
 
   /* ---------- details box ---------- */
@@ -93,28 +94,20 @@
     return lb;
   }
 
-  function cropSvg(inst, p, box) {
-    var poly = p.areas[0];
-    if (!poly) return null;
-    var b = bbox(poly), cx = (b.x0 + b.x1) / 2, cy = (b.y0 + b.y1) / 2, bw = b.x1 - b.x0, bh = b.y1 - b.y0;
-    var ar = (box.clientWidth || 400) / (box.clientHeight || 300), pad = 40;
-    var vw = Math.max(bw + pad * 2, (bh + pad * 2) * ar, 220), vh = vw / ar;
-    var s = svgEl('svg', { viewBox: (cx - vw / 2) + ' ' + (cy - vh / 2) + ' ' + vw + ' ' + vh, preserveAspectRatio: 'xMidYMid slice', 'aria-hidden': 'true' });
-    s.appendChild(svgEl('image', { href: inst.src, x: 0, y: 0, width: inst.W, height: inst.H }));
-    p.areas.forEach(function (a) {
-      s.appendChild(svgEl('polygon', { points: pts(a), fill: 'rgba(0,117,193,.18)', stroke: '#0075C1', 'stroke-width': Math.max(1.5, vw / 180) }));
-    });
-    return s;
-  }
-
   function openLB(inst, p) {
     ensureLightbox();
     lastFocus = document.activeElement;
     var media = lb.querySelector('.eetp-lb__media'), body = lb.querySelector('.eetp-lb__body');
     media.textContent = '';
     body.textContent = '';
-    var crop = el('div', 'eetp-lb__crop');
-    media.appendChild(crop);
+    if (p.img) {
+      var photo = el('img', 'eetp-lb__photo');
+      photo.src = p.img;
+      photo.alt = p.name;
+      media.appendChild(photo);
+    } else {
+      media.appendChild(el('div', 'eetp-lb__noimg', 'Product photo coming soon'));
+    }
 
     body.appendChild(el('p', 'eetp-lb__eyebrow', 'Part ' + p.n));
     var h = el('h3', 'eetp-lb__title', p.name);
@@ -132,18 +125,24 @@
     line('Part number', p.pn);
     line('Quantity per assembly', p.qty);
     body.appendChild(lines);
-    if (p.link) {
-      var a = el('a', 'eetp-btn', 'View product');
-      a.href = p.link;
+    if (p.link || p.sheet) {
       var actions = el('div', 'eetp-lb__actions');
-      actions.appendChild(a);
+      if (p.link) {
+        var a = el('a', 'eetp-btn', 'View product');
+        a.href = p.link;
+        actions.appendChild(a);
+      }
+      if (p.sheet) {
+        var d = el('a', 'eetp-btn eetp-btn--outline', 'Download datasheet');
+        d.href = p.sheet;
+        d.setAttribute('download', '');
+        actions.appendChild(d);
+      }
       body.appendChild(actions);
     }
 
     lb.hidden = false;
     document.body.classList.add('eetp-lock');
-    var svg = cropSvg(inst, p, crop);
-    if (svg) crop.appendChild(svg);
     lb.querySelector('.eetp-lb__x').focus();
   }
 
@@ -161,6 +160,14 @@
     var canvas = root.querySelector('.eetp-ev__canvas');
     if (!img || !dataEl || !canvas) return;
     var parts = parse(dataEl.value || dataEl.textContent || '');
+    var extra = {};
+    try { extra = JSON.parse(root.getAttribute('data-extra') || '{}') || {}; } catch (err) { extra = {}; }
+    parts.forEach(function (p) {
+      var ex = extra[p.n];
+      if (!ex) return;
+      if (ex.img) p.img = safeLink(ex.img);
+      if (!p.desc && ex.desc) p.desc = ex.desc;
+    });
     var tip = el('div', 'eetp-ev__tip');
     tip.hidden = true;
     canvas.appendChild(tip);
