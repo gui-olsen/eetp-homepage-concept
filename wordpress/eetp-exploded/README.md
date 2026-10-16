@@ -14,17 +14,18 @@ Open the product and fill the "Exploded view" box:
 - **Exploded view PDF** (optional): shows a download link under the image.
 - **Exploded view data**: one line per part.
 
-    number | name | part number | qty | description | link | datasheet | areas
+    number | name | part number | qty | description | link | datasheet | areas | photo
 
 - `link`: the product page of the part. Gives the "View product" button, and the plugin takes the part photo (the product's featured image) and short description from that page.
 - `datasheet`: file to download. Gives the "Download datasheet" button. Leave empty if there is none.
 - `areas`: `x,y x,y x,y ...` in pixels of the uploaded image. Use `;` for more than one area on the same part.
+- `photo`: optional photo address for a part that has no product page. It wins over the product photo.
 - Lines that start with `#` are ignored. Parts without areas are not clickable.
 
 ## What the visitor sees
 - Hover: the part is highlighted and a small label shows its number and name.
 - Click or tap: a box opens with the part photo, name, part number, quantity per assembly, description, a "View product" button and, when there is one, a "Download datasheet" button.
-- If a part has no product page yet, the photo area shows "Product photo coming soon".
+- If a part has no photo at all, the box is smaller and shows only the text.
 
 If the product has no image or no data, nothing is shown, so the same template can serve every product.
 

@@ -53,7 +53,7 @@ function eetp_ev_register_fields() {
 				'label'        => 'Exploded view data',
 				'name'         => 'ev_data',
 				'type'         => 'textarea',
-				'instructions' => 'One line per part: number | name | part number | qty | description | link | datasheet | areas',
+				'instructions' => 'One line per part: number | name | part number | qty | description | link | datasheet | areas | photo',
 				'rows'         => 20,
 				'new_lines'    => '',
 			),

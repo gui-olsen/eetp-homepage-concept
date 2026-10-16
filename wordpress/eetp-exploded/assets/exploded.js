@@ -3,10 +3,11 @@
    invisible hover areas over the image. Hover = highlight + name, click/tap/Enter = details box.
 
    Line format (fields separated by |):
-   number | name | part number | qty | description | link | datasheet | areas
+   number | name | part number | qty | description | link | datasheet | areas | photo
    link:      product page of the part (opens with the View product button)
    datasheet: file to download (opens with the Download datasheet button)
    areas:     x,y x,y x,y ...   (use ; between several areas for the same part)
+   photo:     optional. Photo for a part that has no product page. Wins over the product photo.
    Coordinates are in pixels of the original image.
 
    Optional photo and description per part: the shortcode looks up the product behind the link
@@ -40,7 +41,7 @@
       if (!f[0] || !f[1]) return;
       var p = byN[f[0]];
       if (!p) {
-        p = byN[f[0]] = { n: f[0], name: f[1], pn: f[2] || '', qty: f[3] || '', desc: f[4] || '', link: safeLink(f[5] || ''), sheet: safeLink(f[6] || ''), img: '', areas: [] };
+        p = byN[f[0]] = { n: f[0], name: f[1], pn: f[2] || '', qty: f[3] || '', desc: f[4] || '', link: safeLink(f[5] || ''), sheet: safeLink(f[6] || ''), img: safeLink(f[8] || ''), areas: [] };
         order.push(p);
       }
       (f[7] || '').split(';').forEach(function (a) {
@@ -99,14 +100,13 @@
     lastFocus = document.activeElement;
     var media = lb.querySelector('.eetp-lb__media'), body = lb.querySelector('.eetp-lb__body');
     media.textContent = '';
+    lb.querySelector('.eetp-lb__card').classList.toggle('eetp-lb__card--solo', !p.img);
     body.textContent = '';
     if (p.img) {
       var photo = el('img', 'eetp-lb__photo');
       photo.src = p.img;
       photo.alt = p.name;
       media.appendChild(photo);
-    } else {
-      media.appendChild(el('div', 'eetp-lb__noimg', 'Product photo coming soon'));
     }
 
     body.appendChild(el('p', 'eetp-lb__eyebrow', 'Part ' + p.n));
@@ -165,7 +165,7 @@
     parts.forEach(function (p) {
       var ex = extra[p.n];
       if (!ex) return;
-      if (ex.img) p.img = safeLink(ex.img);
+      if (ex.img && !p.img) p.img = safeLink(ex.img);
       if (!p.desc && ex.desc) p.desc = ex.desc;
     });
     var tip = el('div', 'eetp-ev__tip');
