@@ -1,0 +1,82 @@
+/* EETP exploded view: styles for the [eetp_exploded] shortcode.
+   Colours fall back to the theme tokens when they exist. */
+.eetp-ev {
+  --ev-accent: var(--color-accent, #0075C1);
+  --ev-accent-hover: var(--color-accent-hover, #005E9A);
+  --ev-ink: #071927;
+  --ev-line: var(--color-secondary-tint, #E9E9E9);
+  position: relative;
+  width: 100%;
+}
+.eetp-ev__canvas { position: relative; background: #fff; }
+.eetp-ev__img { display: block; width: 100%; height: auto; }
+.eetp-ev__svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.eetp-ev__part { cursor: pointer; outline: none; }
+.eetp-ev__hs { fill: transparent; stroke: transparent; stroke-width: 1.5; transition: fill .2s, stroke .2s; }
+.eetp-ev__part:hover .eetp-ev__hs,
+.eetp-ev__part:focus-visible .eetp-ev__hs { fill: rgba(0, 117, 193, .38); stroke: var(--ev-accent); stroke-width: 2.5; }
+.eetp-ev__badge { opacity: 0; transition: opacity .2s; }
+.eetp-ev__badge circle { fill: var(--ev-accent); stroke: #fff; stroke-width: 2; }
+.eetp-ev__part:hover .eetp-ev__badge,
+.eetp-ev__part:focus-visible .eetp-ev__badge { opacity: 1; }
+
+.eetp-ev__tip {
+  position: absolute; z-index: 5; pointer-events: none; max-width: 260px;
+  padding: 8px 12px; border-radius: 4px; background: var(--ev-ink); color: #fff;
+  font-size: 13px; line-height: 1.3; box-shadow: 0 8px 22px rgba(0, 0, 0, .25);
+  transform: translate(-50%, -110%);
+}
+.eetp-ev__tip b { display: block; font-weight: 700; }
+.eetp-ev__tip small { font-size: 12px; color: #cfd8df; }
+.eetp-ev__tip[hidden] { display: none; }
+
+.eetp-ev__pdf {
+  display: inline-block; margin-top: 12px; font-size: 14px; font-weight: 700; text-transform: uppercase;
+  color: var(--ev-accent); text-decoration: underline; text-underline-offset: 3px;
+}
+.eetp-ev__pdf:hover { color: var(--ev-accent-hover); }
+
+/* details box */
+body.eetp-lock { overflow: hidden; }
+.eetp-lb {
+  position: fixed; inset: 0; z-index: 99999; display: grid; place-items: center; padding: 24px;
+  background: rgba(7, 25, 39, .72); animation: eetpFade .25s both;
+}
+.eetp-lb[hidden] { display: none; }
+.eetp-lb__card {
+  position: relative; width: min(980px, 100%); max-height: 92vh; overflow: auto;
+  display: grid; grid-template-columns: 1.1fr 1fr; background: #fff; border-radius: 8px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, .45); animation: eetpPop .4s both;
+}
+.eetp-lb__media { padding: 24px; background: #F8F9F9; display: flex; align-items: flex-start; }
+.eetp-lb__crop { width: 100%; aspect-ratio: 4 / 3; overflow: hidden; background: #fff; border: 1px solid var(--ev-line); border-radius: 4px; }
+.eetp-lb__crop svg { display: block; width: 100%; height: 100%; }
+.eetp-lb__body { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 40px 32px 32px; }
+.eetp-lb__eyebrow { margin: 0; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ev-accent); }
+.eetp-lb__title { margin: 0; font-size: 24px; line-height: 1.15; color: var(--ev-ink); }
+.eetp-lb__desc { margin: 0; font-size: 16px; line-height: 1.6; color: #555; }
+.eetp-lb__lines p { margin: 0 0 2px; font-size: 15px; line-height: 1.6; color: #000; }
+.eetp-lb__lines strong { color: var(--ev-ink); }
+.eetp-lb__actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.eetp-btn {
+  display: inline-flex; align-items: center; padding: 13px 22px; border-radius: 4px;
+  background: var(--ev-accent); color: #fff; font-size: 14px; font-weight: 700; text-decoration: none; transition: background-color .3s;
+}
+.eetp-btn:hover { background: var(--ev-accent-hover); color: #fff; }
+.eetp-lb__x {
+  position: absolute; top: 12px; right: 12px; z-index: 2; width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid var(--ev-line); background: #fff; color: #000; font-size: 22px; line-height: 1; cursor: pointer;
+}
+.eetp-lb__x:hover { border-color: var(--ev-accent); color: var(--ev-accent); }
+@keyframes eetpFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes eetpPop { from { opacity: 0; transform: translateY(18px) scale(.97); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 720px) {
+  .eetp-lb { padding: 12px; }
+  .eetp-lb__card { grid-template-columns: 1fr; }
+  .eetp-lb__body { padding: 24px 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .eetp-lb, .eetp-lb__card { animation: none; }
+}

@@ -28,6 +28,7 @@ Then open `http://localhost:5566`.
 | `product.html` | Individual product page (MWD Ball-Screw Drive): intro, specifications, benefits, interactive exploded view, inquiry form, related products. Reached from the "Linear Drive Assembly" card on the homepage. |
 | `product-03.html` | Product page variant 03 (Figma `Individual-product-03`): dark hero, overview, specification table, benefits and inquiry stacked, related products. No exploded view. |
 | `product-03-1.html` | Product page variant 03.1 (Figma `Individual-product-03.1`): overview, two-column specifications with benefits and inquiry, interactive exploded view, related products. |
+| `wordpress/eetp-exploded/` | WordPress version of the exploded view: `[eetp_exploded]` shortcode (PHP, JS, CSS) plus the ACF field group. Test page: `exploded-test.html`. |
 | `css/product.css` | Styles for the product pages and the exploded-view lightbox. |
 | `js/exploded-data.js` | Exploded view data: 24 parts, hotspot polygons (drawing pixel space) and sample copy. |
 | `js/exploded.js` | Exploded view behaviour: hover highlight and tooltip, click to open the lightbox, keyboard support, Esc to close. |

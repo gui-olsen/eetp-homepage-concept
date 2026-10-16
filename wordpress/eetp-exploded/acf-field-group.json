@@ -1,0 +1,50 @@
+[
+  {
+    "key": "group_eetp_exploded_view",
+    "title": "Exploded view",
+    "fields": [
+      {
+        "key": "field_eetp_ev_image",
+        "label": "Exploded view image (PNG)",
+        "name": "ev_image",
+        "type": "image",
+        "instructions": "The exploded view drawing without the parts table.",
+        "return_format": "array",
+        "preview_size": "medium",
+        "library": "all"
+      },
+      {
+        "key": "field_eetp_ev_pdf",
+        "label": "Exploded view PDF",
+        "name": "ev_pdf",
+        "type": "file",
+        "instructions": "Optional. Shows a download link under the image.",
+        "return_format": "array",
+        "library": "all"
+      },
+      {
+        "key": "field_eetp_ev_data",
+        "label": "Exploded view data",
+        "name": "ev_data",
+        "type": "textarea",
+        "instructions": "One line per part: number | name | part number | qty | description | link | areas",
+        "rows": 20,
+        "new_lines": ""
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "product"
+        }
+      ]
+    ],
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+  }
+]
